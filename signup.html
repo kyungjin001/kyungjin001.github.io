@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../bootstrap/bootstrap.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<style type="text/css">
+		*{
+            font-family: 'Jua', sans-serif;
+        }
+		#contant {
+			width: 1300px;
+			height: 1300px;
+			margin: 0 auto;
+            /* background-color: blueviolet; */
+		}
+		#main1 {
+			width: 300px;
+			height: 350px;
+			margin: 0 auto;
+			margin-top: 30px;
+            /* background-color: cadetblue; */
+		}
+		#main2 {
+			width: 900px;
+			height: 1000px;
+			margin: 0 auto;
+			margin-top: 30px;
+            border: solid #cccccc 1px;
+            /* background-color: aquamarine; */
+		}
+		#q1 {
+			margin-left: 400px;
+            margin-top: 310px;
+            width: 150px;
+			height: 100px;
+
+		}
+     form {
+        margin-top: 100px;
+        margin-left: 80px;
+        width: 800px;
+		height: 500px;
+        font-size: 20px;
+     }
+
+     .a1 {
+        width: 380px !important;
+        /* background-color: cadetblue; */
+        /* margin-right: 200px; */
+        display: inline-block !important;
+        margin-left: 3px;
+
+     }
+     .a2 {
+        width: 200px !important;
+        /* background-color: cadetblue; */
+        /* margin-right: 200px; */
+        display: inline-block !important;
+        margin-left: 3px;
+        color: gray;
+
+     }
+     .a3 {
+        width: 180px !important;
+        /* background-color: cadetblue; */
+        /* margin-right: 200px; */
+        display: inline-block !important;
+        margin-left: 3px;
+        
+     }
+     #e1{
+         width: 180px !important;
+         display: inline-block !important;
+         margin-left:3px;
+
+     }
+     
+
+        
+
+	</style>
+    <script>
+        //아이디 정규식
+        function idCheck(){
+            const exp = /^(?=.*[a-z])(?=.*\d)[a-z\d]{6,10}$/;
+            
+            const exp1 = /^(?=.*[a-z])(?=.*[A-Z])[a-zA-Z\d]{6,10}$/;
+            
+            const exp2 = /^(?=.*[a-z])(?=.*\d)(?=.*[-_@!])[a-z\d-_@!]{5,20}$/; 
+
+
+            const id = document.getElementById('id').value;
+            const loginCheckResults = document.getElementById('loginCheckResults');
+            const idLength = id.length;
+            if(idLength==0){
+                loginCheckResults.innerHTML = '필수항목입니다.'
+                loginCheckResults.style.color = 'red';  }
+            else if(id.match(exp1)){
+            loginCheckResults.innerHTML = '멋진 아이디네요!.';
+            loginCheckResults.style.color = 'green'
+           }else{
+            loginCheckResults.innerHTML = '6~10자 영문 대문자,소문자,숫자를 사용바랍니다.';
+            loginCheckResults.style.color = 'red';}
+           
+        }
+
+
+                //비밀번호 정규식
+                        function psCheck(){
+                
+                
+                    const exp2 = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[-_!#@$])[a-zA-Z\d-_!#@$]{8,16}$/; 
+
+                    const ps = document.getElementById('pw').value;
+
+                    
+                const pwResult = document.getElementById('pw-result');
+                const psLength = ps.length;
+                if(psLength==0){
+                    pwResult.innerHTML = '필수항목입니다.'
+                    pwResult.style.color = 'red';  }
+                    
+                    else if(ps.match(exp2)){
+                        pwResult.innerHTML = '안전한 비밀번호 입니다!'
+                        pwResult.style.color ='green';
+                    }else {
+                        pwResult.innerHTML ='8~16자 영문 대문자,소문자, 숫자, 특수문자(-_!#@$)를 사용하세요.'
+                        pwResult.style.color ='red';
+                    }
+                }
+                //비밀번호 정규식 끝
+
+
+
+                //비밀번호 재확인
+                function pwConfirm(){
+                const pw = document.getElementById('pw').value;
+                const pwConfirm = document.getElementById('pw-confirm').value;
+                const pwConfirmResult = document.getElementById('pw-confirm-result')
+                if(pw==pwConfirm){
+                    pwConfirmResult.innerHTML = '일치합니다.';
+                    pwConfirmResult.style.color = 'green';
+                }else {
+                    pwConfirmResult.innerHTML = '일치하지 않습니다.'
+                    pwConfirmResult.style.color = 'red';
+                }
+
+                }
+                //비밀번호 재확인 끝
+
+             //전화번호 정규식   
+           function phoneCheck(){
+            const exp = /^\d{3}-\d{4}-\d{4}$/;
+            const phone = document.getElementById('phone').value;
+            const result = document.getElementById('phone-check-result')
+
+            if(phone.match(exp)){
+                result.innerHTML = "유효한 형식입니다."
+                result.style.color ='green'
+            }else {
+                result.innerHTML = "유효하지 않은 형식입니다."
+                result.style.color='red'
+            }
+        }
+        //전화번호 정규식 끝
+
+       // 주소찾기
+        function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+
+                var addr = ''; 
+                var extraAddr = ''; 
+
+                if (data.userSelectedType === 'R') { 
+                    addr = data.roadAddress;
+                } else { 
+                    addr = data.jibunAddress;
+                }
+
+                if(data.userSelectedType === 'R'){
+                    if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                        extraAddr += data.bname;
+                    }
+                    if(data.buildingName !== '' && data.apartment === 'Y'){
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+                    if(extraAddr !== ''){
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+                    document.getElementById("sample6_extraAddress").value = extraAddr;
+                
+                } else {
+                    document.getElementById("sample6_extraAddress").value = '';
+                }
+
+                document.getElementById('sample6_postcode').value = data.zonecode;
+                document.getElementById("sample6_address").value = addr;
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
+    // 주소찾기 끝
+
+    //이메일 함수
+    function emailSelect(){
+            const domainselect = document.getElementById('domainselect').value
+            const domain = document.getElementById('domain')
+            // select 에서 선택한 값을 domain id를 적용한 input 태그에 출력
+            domain.value = domainselect;
+            
+        }
+    //이메일 함수 끝
+
+    </script>
+</head>
+<body>
+	<section>
+	<div id="contant">
+		<div id="main1">
+			<a href="./index.html"><img src="../images/9941A1385B99240D2E.png" width="300" height="300"></a>
+		</div>
+		<div id="main2">
+<form>
+    - 아이디 :<input type="text"  id="id" class="a1 form-control shadow-sm" onblur="idCheck()" placeholder="아이디를 입력바랍니다." ><br>
+    <span id="loginCheckResults"></span><br>
+- 비밀번호 : <input type="password" id="pw" class="a1 form-control shadow-sm" onblur="psCheck()" placeholder='비밀번호를 입력바랍니다.'><br>
+<span id="pw-result"></span><br> 
+
+- 비밀번호확인 : <input type="password" id="pw-confirm" class="a1 form-control shadow-sm"  onkeyup="pwConfirm()" placeholder='비밀번호를 한번더 입력바랍니다.'><br>
+   <span id="pw-confirm-result"></span><br>
+
+- 이름 : <input type='text' class="a1 form-control shadow-sm" placeholder="이름을 입력바랍니다."><br><br>
+- 성별 : <input type='radio'> 남성 <input type='radio'> 여성<br><br>
+- 전화번호 : <input type="text" id="phone" class="a1 form-control shadow-sm" onblur="phoneCheck()" placeholder="010-xxxx-xxxx 형식으로 입력바랍니다."><br>
+<span id="phone-check-result"></span><br>
+<input type='checkbox' > 수신동의체크<br><br>
+
+
+- 우편번호 확인<br>
+<input type="text" class="a1 form-control shadow-sm" id="sample6_postcode" placeholder="우편번호">
+<input type="button" class="btn btn-primary" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br>
+<input type="text" class="a1 form-control shadow-sm" id="sample6_address" placeholder="주소"><br>
+<input type="text" class="a1 form-control shadow-sm" id="sample6_detailAddress" placeholder="상세주소">
+<input type="text" class="a1 form-control shadow-sm" id="sample6_extraAddress" placeholder="참고항목">
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+
+
+
+
+
+<br><br>- 이메일 : <input type='text' name="emailId" id="e1" class="form-control shadow-sm" placeholder="your email"> @
+<input type="text" id="domain" name="domain" class="a3 form-control shadow-sm">
+<!-- <select class="a2 form-control shadow-sm"> -->
+<select id="domainselect" class="a2 form-control shadow-sm" onchange="emailSelect()">
+        <option selected>직접입력</option>
+        <option value="naver.com">naver.com</option>
+        <option value="daum.net">daum.net</option>
+        <option value="hanmail.net">hanmail.net</option>
+        </select>
+<button class="btn btn-primary">확인</button>
+
+<br><br>- 생년월일 : <select class="a2 form-control shadow-sm">
+	<option>년(4자)</option>
+	<option>1998</option>
+	<option>1997</option>
+	<option>직접입력</option>
+</select>
+<select class="a2 form-control shadow-sm">
+	<option>월</option>
+	<option>1월</option>
+	<option>2월</option>
+	<option>직접입력</option>
+</select>
+<select class="a2 form-control shadow-sm">
+	<option>일</option>
+	<option>1일</option>
+	<option>2일</option>
+	<option>직접입력</option>
+</select>
+
+<button class="btn btn-primary">확인</button><br><br>
+</form>
+<div id="q1">
+		<a href="./index.html"><button class="btn btn-primary">가입하기</button></a>
+      </div>
+
+		</div>
+   
+</section>
+</body>
+</html>
